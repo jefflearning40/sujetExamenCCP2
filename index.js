@@ -1,39 +1,42 @@
 import express from "express";
-import router from "./routes/user.routes.js";
-import userRouter from "./routes/mission.route.js";
 
-const bcrypt = require('bcrypt');
 const app = express();
+const port = 3000;
 
-app.use(express.json());
+// Page utilisateur générique
+app.get("/user", (req, res) => {
+  res.send("Welcome to Manager Task Register - User space! choice :benevol or admin");
+});
+// Enregistrement bénévole
+app.get("/user/benevol", (req, res) => {
+  res.send("Welcome to Manager Task Register - Benevol register or connect space!");
+});
+// Enregistrement bénévole
+app.get("/user/benevol/register", (req, res) => {
+  res.send("Welcome to Manager Task Register - Benevol register space!");
+});
 
-app.use("/benevole", router);
+// Connexion bénévole
+app.get("/user/benevol/connect", (req, res) => {
+  res.send("Welcome to Manager Task Register - Benevol connect space!");
+});
 
-app.use("/mission", userRouter);
+// Connexion admin
+app.get("/user/admin", (req, res) => {
+  res.send("Welcome to Manager Task Register - Admin connect or manager space!");
+});
 
-//--------------------------------------------------------------le JWT-------------------------------------------------
-// Mot de passe en clair (à hacher)
-const PasswordAdminAsso = 'adminasso';
+// Espace manager (admin)
+app.get("/user/admin/manager", (req, res) => {
+  res.send("Welcome to Manager Task Register - Admin manager space!");
+});
 
-// Nombre de tour de salt, ici 2 puissance 10 passages a executer l'algorythme mais c'est plus lent mais plus cher pour l'attaquant
-const saltRounds = 10;  
+// Espace connect (admin)
+app.get("/user/admin/connect", (req, res) => {
+  res.send("Welcome to Manager Task Register - Admin connect space!");
+});
 
-async function run() {
-  try {
-    // Génère le hash du mot de passe
-    const hashedPassword = await bcrypt.hash(PAsswordAdminAsso, saltRounds);
-    console.log('mot de pass hashed:', hashedPassword);
-
-    // Vérifie ensuite le mot de passe
-    const isMatch = await bcrypt.compare(plainPassword, hashedPassword);
-    console.log('Mot de passe correct ?', isMatch);
-  } catch (err) {
-    console.error('Erreur bcrypt:', err);
-  }
-}
-
-
-app.listen(3000, () => {
-  console.log("server MTR launched in ::: http://localhost:3000");
-  
+// Lancement du serveur
+app.listen(port, () => {
+  console.log(`✅ Serveur lancé sur http://localhost:${port}`);
 });
