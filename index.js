@@ -14,6 +14,7 @@ app.use("/user", userRoutes);
 app.use("/mission", missionRoutes);
 
 const port = process.env.PORT || 3000;
+//si il ne trouve pas de port dans le env il prendra le port 3000 par default
 app.listen(port, () => {
   console.log(`🚀 Serveur lancé sur http://localhost:${port}`);
 });

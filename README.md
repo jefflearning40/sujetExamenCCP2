@@ -14,3 +14,12 @@ ou alors gerer le CRUD
 
 pour commencer, aller sur MTR.html.
 1 choisir benevole ou association
+
+
+
+dans thunder-client: la route   missions/post
+                                missions/get et /id
+                                missions/delete et delete/id
+                                missions/patch
+                                mission/put
+
