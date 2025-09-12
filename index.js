@@ -1,40 +1,14 @@
 import express from "express";
+import userRoutes from "./routes/user.route.js"; // import du routeur
 
 const app = express();
 const port = 3000;
 
-// Page utilisateur générique
-app.get("/user", (req, res) => {
-  res.send("Welcome to Manager Task Register - User space! choice :benevol or admin");
-});
-// Enregistrement bénévole
-app.get("/user/benevol", (req, res) => {
-  res.send("Welcome to Manager Task Register - Benevol register or connect space!");
-});
-// Enregistrement bénévole
-app.get("/user/benevol/register", (req, res) => {
-  res.send("Welcome to Manager Task Register - Benevol register space!");
-});
+// Middleware JSON si besoin
+app.use(express.json());
 
-// Connexion bénévole
-app.get("/user/benevol/connect", (req, res) => {
-  res.send("Welcome to Manager Task Register - Benevol connect space!");
-});
-
-// Connexion admin
-app.get("/user/admin", (req, res) => {
-  res.send("Welcome to Manager Task Register - Admin connect or manager space!");
-});
-
-// Espace manager (admin)
-app.get("/user/admin/manager", (req, res) => {
-  res.send("Welcome to Manager Task Register - Admin manager space!");
-});
-
-// Espace connect (admin)
-app.get("/user/admin/connect", (req, res) => {
-  res.send("Welcome to Manager Task Register - Admin connect space!");
-});
+// On "branche" le routeur pour toutes les routes commençant par /user
+app.use("/user", userRoutes);
 
 // Lancement du serveur
 app.listen(port, () => {
