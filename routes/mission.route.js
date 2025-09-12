@@ -10,8 +10,8 @@ router.get("/get", (req, res) => {
 
 // Créer un fichier
 router.post("/post", (req, res) => {
-  
-    res.send("add datas ",req.body)
+   console.log(req.body); // 👉 affiche les données envoyées via thunderclient dans body json
+   res.send({ message: "add datas", data: req.body });
 });
 
 // UPDATE (remplace entièrement)
