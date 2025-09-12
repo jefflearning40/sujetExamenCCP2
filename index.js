@@ -1,21 +1,19 @@
 import express from "express";
 import dotenv from "dotenv";
 import userRoutes from "./routes/user.route.js";
-import missionRoutes from "./routes/mission.route.js"; // ✅ import mission routes
+import missionRoutes from "./routes/mission.route.js";
+import "./db.js"; // ⚡ on importe la connexion MySQL (pas besoin de la réexporter ici)
 
 dotenv.config();
 const app = express();
-const port = process.env.PORT || 3000;
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Routes user
 app.use("/user", userRoutes);
-
-// Routes mission
 app.use("/mission", missionRoutes);
 
-// Lancement du serveur
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log(`✅ Serveur lancé sur http://localhost:${port}`);
+  console.log(`🚀 Serveur lancé sur http://localhost:${port}`);
 });
