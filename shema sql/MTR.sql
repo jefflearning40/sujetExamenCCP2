@@ -64,4 +64,4 @@ CREATE TABLE missions (
 ) ENGINE=InnoDB;
 
 -- Index utile pour les jointures (missions -> users)
-CREATE INDEX idx_missions_association_id ON missions (associat_id);
+CREATE INDEX idx_missions_association_id ON missions (association_id);

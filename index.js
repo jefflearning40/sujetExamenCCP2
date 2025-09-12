@@ -1,13 +1,17 @@
 import express from "express";
-import userRoutes from "./routes/user.route.js"; // import du routeur
 import dotenv from "dotenv";
+import userRoutes from "./routes/user.route.js";
+import missionRoutes from "./routes/mission.route.js"; // ✅ import mission routes
 
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-// On "branche" le routeur pour toutes les routes commençant par /user
+// Routes user
 app.use("/user", userRoutes);
+
+// Routes mission
+app.use("/mission", missionRoutes);
 
 // Lancement du serveur
 app.listen(port, () => {
