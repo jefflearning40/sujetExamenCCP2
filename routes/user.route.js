@@ -1,3 +1,6 @@
+// ce sont des methodes http
+
+
 import { Router } from "express";
 
 const router = Router();
