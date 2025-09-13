@@ -1,43 +1,23 @@
-// ce sont des methodes http
+// ==========================
+// Fichier : user.route.js
+// ==========================
 
+import express from "express";
+import { //importation du crud du controler
+  getAllUsers,
+  getUserById,
+  createUser,
+  updateUser,
+  deleteUser
+} from "../controllers/user.controller.js";
 
-import { Router } from "express";
+const router = express.Router();
 
-const router = Router();
-
-// Page utilisateur générique
-router.get("/", (req, res) => {
-  res.send("Welcome to Manager Task Register - User space! choice : benevol or admin");
-});
-
-// Enregistrement bénévole
-router.get("/benevol", (req, res) => {
-  res.send("Welcome to Manager Task Register - Benevol register or connect space!");
-});
-
-// Enregistrement bénévole
-router.get("/benevol/register", (req, res) => {
-  res.send("Welcome to Manager Task Register - Benevol register space!");
-});
-
-// Connexion bénévole
-router.get("/benevol/connect", (req, res) => {
-  res.send("Welcome to Manager Task Register - Benevol connect space!");
-});
-
-// Connexion admin
-router.get("/admin", (req, res) => {
-  res.send("Welcome to Manager Task Register - Admin connect or manager space!");
-});
-
-// Espace manager (admin)
-router.get("/admin/manager", (req, res) => {
-  res.send("Welcome to Manager Task Register - Admin manager space!");
-});
-
-// Espace connect (admin)
-router.get("/admin/connect", (req, res) => {
-  res.send("Welcome to Manager Task Register - Admin connect space!");
-});
+// Routes qui appellent les fonctions du controller
+router.get("/get", getAllUsers);
+router.get("/:id", getUserById);
+router.post("/post", createUser);
+router.put("/:id", updateUser);
+router.delete("/:id", deleteUser);
 
 export default router;

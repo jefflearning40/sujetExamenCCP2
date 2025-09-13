@@ -15,7 +15,10 @@ ou alors gerer le CRUD
 pour commencer, aller sur MTR.html.
 1 choisir benevole ou association
 
+utilisation de faker pour généerer un jeux de données pour la table mission de la base de données mtr.
 
+LEs ENDPOINTS points d'acces pour le client
+----------------------------------------------
 
 dans thunder-client: la route   missions/post
                                 missions/get et /id
@@ -23,3 +26,12 @@ dans thunder-client: la route   missions/post
                                 missions/patch
                                 mission/put
 
+/user/get → récupère tous les utilisateurs
+
+/user/:id → récupère un utilisateur précis
+
+/user/post → crée un nouvel utilisateur (mot de passe haché)
+
+/user/:id (PUT) → met à jour un utilisateur
+
+/user/:id (DELETE) → supprime un utilisateur
