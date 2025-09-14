@@ -18,6 +18,10 @@ const router = express.Router();
 
 // ==================== ROUTES UTILISATEUR ====================
 
+// ==================== ROUTE LOGIN ====================
+// Permet à un utilisateur de se connecter avec email + password
+// Retourne un token JWT en cas de succès
+router.post("/login", loginUser);
 // Récupérer tous les utilisateurs
 router.get("/get", getAllUsers);
 
@@ -33,9 +37,6 @@ router.put("/:id", updateUser);
 // Supprimer un utilisateur
 router.delete("/:id", deleteUser);
 
-// ==================== ROUTE LOGIN ====================
-// Permet à un utilisateur de se connecter avec email + password
-// Retourne un token JWT en cas de succès
-router.post("/login", loginUser);
+
 
 export default router;
