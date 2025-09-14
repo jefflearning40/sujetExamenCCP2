@@ -1,25 +1,54 @@
-import express from "express";                          //on importe le framwork express
-import dotenv from "dotenv";                            //pour lire les variables d'environnement qui sont dans le fichier .env
-import userRoutes from "./routes/user.route.js";        //on importe les routes liées aux utilisateurs
-import missionRoutes from "./routes/mission.route.js";  //on importe les routes liees aux missions
-import "./db.js";                                       // ⚡ on importe la connexion MySQL (pas besoin de la réexporter ici)
+import express from "express";                          // on importe le framework express
+import dotenv from "dotenv";                            // pour lire les variables d'environnement
+import userRoutes from "./routes/user.route.js";        // routes utilisateurs
+import missionRoutes from "./routes/mission.route.js";  // routes missions
+import "./db.js";                                       // ⚡ connexion MySQL
 
-dotenv.config();                                        //dotenv lit le fichier .env et ajoute les variables
-const app = express();                                 //ici, nous creons une instance de l'application express
+// Swagger
+import swaggerUi from "swagger-ui-express";
+import swaggerJsdoc from "swagger-jsdoc";
 
-app.use(express.json());                              // On crée une instance de l’application Express
+dotenv.config();
+const app = express();
 
-
-//Permet de lire les données envoyées par un formulaire HTML (méthode POST) et de les récupérer facilement dans req.body.”
+// Middleware pour parser JSON et formulaire
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// On définit la route de base "/user" et toutes les routes définies dans user.route.js commenceront par /user
+// =====================
+// Swagger configuration
+// =====================
+const swaggerOptions = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "API MTR",
+      version: "1.0.0",
+      description: "Documentation auto-générée avec Swagger pour l'API MTR",
+    },
+    servers: [
+      {
+        url: "http://localhost:3000",
+      },
+    ],
+  },
+  apis: ["./routes/*.js"], // fichiers contenant les commentaires JSDoc @swagger
+};
+
+const swaggerSpec = swaggerJsdoc(swaggerOptions);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+// =====================
+// Routes principales
+// =====================
 app.use("/user", userRoutes);
-// On définit la route de base "/mission" et toutes les routes définies dans mission.route.js commenceront par /mission
 app.use("/mission", missionRoutes);
 
+// =====================
+// Lancement du serveur
+// =====================
 const port = process.env.PORT || 3000;
-//si il ne trouve pas de port dans le env il prendra le port 3000 par default
 app.listen(port, () => {
   console.log(`🚀 Serveur lancé sur http://localhost:${port}`);
+  console.log(`📖 Documentation Swagger : http://localhost:${port}/api-docs`);
 });

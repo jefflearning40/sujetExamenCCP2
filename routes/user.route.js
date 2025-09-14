@@ -3,40 +3,158 @@
 // ==========================
 
 import express from "express";
-
-// On importe toutes les fonctions CRUD + login depuis le controller
 import {
   getAllUsers,
   getUserById,
   createUser,
   updateUser,
   deleteUser,
-  loginUser   // ✅ on ajoute la fonction login
+  loginUser
 } from "../controllers/user.controller.js";
 
 const router = express.Router();
 
-// ==================== ROUTES UTILISATEUR ====================
+/**
+ * @swagger
+ * tags:
+ *   name: Users
+ *   description: Gestion des utilisateurs
+ */
 
-// ==================== ROUTE LOGIN ====================
-// Permet à un utilisateur de se connecter avec email + password
-// Retourne un token JWT en cas de succès
+/**
+ * @swagger
+ * /user/login:
+ *   post:
+ *     summary: Connexion utilisateur
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [email, password]
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Connexion réussie + token JWT
+ *       401:
+ *         description: Mot de passe incorrect
+ *       404:
+ *         description: Utilisateur non trouvé
+ */
 router.post("/login", loginUser);
-// Récupérer tous les utilisateurs
+
+/**
+ * @swagger
+ * /user/get:
+ *   get:
+ *     summary: Récupérer tous les utilisateurs
+ *     tags: [Users]
+ *     responses:
+ *       200:
+ *         description: Liste des utilisateurs
+ */
 router.get("/get", getAllUsers);
 
-// Récupérer un utilisateur par ID
+/**
+ * @swagger
+ * /user/{id}:
+ *   get:
+ *     summary: Récupérer un utilisateur par ID
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Utilisateur trouvé
+ *       404:
+ *         description: Utilisateur non trouvé
+ */
 router.get("/:id", getUserById);
 
-// Créer un nouvel utilisateur
+/**
+ * @swagger
+ * /user/post:
+ *   post:
+ *     summary: Créer un nouvel utilisateur
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [name, email, password, role]
+ *             properties:
+ *               name: { type: string }
+ *               email: { type: string }
+ *               password: { type: string }
+ *               role: { type: string }
+ *     responses:
+ *       201:
+ *         description: Utilisateur ajouté
+ */
 router.post("/post", createUser);
 
-// Mettre à jour un utilisateur existant
+/**
+ * @swagger
+ * /user/{id}:
+ *   put:
+ *     summary: Mettre à jour un utilisateur
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [name, email, password, role]
+ *             properties:
+ *               name: { type: string }
+ *               email: { type: string }
+ *               password: { type: string }
+ *               role: { type: string }
+ *     responses:
+ *       200:
+ *         description: Utilisateur mis à jour
+ *       404:
+ *         description: Utilisateur non trouvé
+ */
 router.put("/:id", updateUser);
 
-// Supprimer un utilisateur
+/**
+ * @swagger
+ * /user/{id}:
+ *   delete:
+ *     summary: Supprimer un utilisateur
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Utilisateur supprimé
+ *       404:
+ *         description: Utilisateur non trouvé
+ */
 router.delete("/:id", deleteUser);
-
-
 
 export default router;

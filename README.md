@@ -35,3 +35,6 @@ dans thunder-client: la route   missions/post
 /user/:id (PUT) → met à jour un utilisateur
 
 /user/:id (DELETE) → supprime un utilisateur
+
+pour documenter l'API j'ai installer swagger parceque dscrib n'est pas reconnu par npm
+aller sur :http://localhost:3000/api-docs
