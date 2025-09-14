@@ -1,5 +1,6 @@
 
 # Manager Task register
+suivi du travail sur trello :https://trello.com/b/BmQzg9il/sujet-examen-ccp2
 
 se connecter a MTR et choisir entre benevole et association
  *Le benevole peut se connecter ou s'inscrire
