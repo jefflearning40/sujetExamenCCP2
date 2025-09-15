@@ -2,7 +2,7 @@ import express from "express";                          // on importe le framewo
 import dotenv from "dotenv";                            // pour lire les variables d'environnement
 import userRoutes from "./routes/user.route.js";        // routes utilisateurs
 import missionRoutes from "./routes/mission.route.js";  // routes missions
-import "./db.js";                                       // ⚡ connexion MySQL
+import "./db.js";                                       //  connexion MySQL
 
 // Swagger
 import swaggerUi from "swagger-ui-express";

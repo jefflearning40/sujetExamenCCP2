@@ -39,3 +39,5 @@ dans thunder-client: la route   missions/post
 
 pour documenter l'API j'ai installer swagger parceque dscrib n'est pas reconnu par npm
 aller sur :http://localhost:3000/api-docs
+
+pour des raison de securite, j'ai mis le .env dans le git ignore car il possede le mot de pass pour jwt
