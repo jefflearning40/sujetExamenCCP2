@@ -13,7 +13,7 @@ se connecter a MTR et choisir entre benevole et association
 si la distribution des roles le reconnait comme admin alors il peut lire les demande d'inscriptions
 ou alors gerer le CRUD
 
-pour commencer, aller sur MTR.html.
+pour commencer, normalement, il faut aller sur MTR.html. mais cette page etant encore en chantier, je peux faire des test via thunderclient ou bien sur swagger a l'adresse api-doc du localhost 3000
 1 choisir benevole ou association
 
 utilisation de faker pour généerer un jeux de données pour la table mission de la base de données mtr.
