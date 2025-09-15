@@ -26,7 +26,7 @@ export const authMiddleware = (req, res, next) => {
 
   try {
     // On vérifie le token avec la clé secrète stockée dans .env (JWT_SECRET)
-    // jwt.verify() décode le token et vérifie qu’il n’a pas été falsifié
+    // jwt.verify() décode le token et vérifie qu’il n’a pas été modifié ou qu'il n'est plus bon
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     // On ajoute les infos du token (id, role, etc.) dans req.user
@@ -37,7 +37,7 @@ export const authMiddleware = (req, res, next) => {
     next();
   } catch (err) {
     // Si le token est expiré ou invalide → erreur 403 (interdit)
-    console.error("❌ Erreur vérification JWT :", err);
+    console.error(" Erreur vérification JWT :", err);
     return res.status(403).json({ error: "Token invalide ou expiré" });
   }
 };

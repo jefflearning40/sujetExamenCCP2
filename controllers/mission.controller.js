@@ -16,7 +16,7 @@ export const getAllMissions = (req, res) => {
 
   db.query(sql, (err, results) => {
     if (err) {
-      console.error("❌ Erreur lors de la récupération :", err);
+      console.error(" Erreur lors de la récupération :", err);
       return res.status(500).json({ error: "Erreur serveur" });
     }
     res.json(results);
@@ -38,7 +38,7 @@ export const getMissionById = (req, res) => {
 
   db.query(sql, [id], (err, results) => {
     if (err) {
-      console.error("❌ Erreur lors de la récupération :", err);
+      console.error(" Erreur lors de la récupération :", err);
       return res.status(500).json({ error: "Erreur serveur" });
     }
 
@@ -66,7 +66,7 @@ export const createMission = (req, res) => {
 
   db.query(sql, [title, description, date_mission, association_id], (err, result) => {
     if (err) {
-      console.error("❌ Erreur lors de l'insertion :", err);
+      console.error(" Erreur lors de l'insertion :", err);
       return res.status(500).json({ error: "Erreur serveur" });
     }
 
@@ -96,7 +96,7 @@ export const updateMission = (req, res) => {
 
   db.query(sql, [title, description, date_mission, id], (err, result) => {
     if (err) {
-      console.error("❌ Erreur lors de la mise à jour :", err);
+      console.error(" Erreur lors de la mise à jour :", err);
       return res.status(500).json({ error: "Erreur serveur" });
     }
 
@@ -120,7 +120,7 @@ export const deleteMission = (req, res) => {
 
   db.query(sql, [id], (err, result) => {
     if (err) {
-      console.error("❌ Erreur lors de la suppression :", err);
+      console.error(" Erreur lors de la suppression :", err);
       return res.status(500).json({ error: "Erreur serveur" });
     }
 

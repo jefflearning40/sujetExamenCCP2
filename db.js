@@ -13,7 +13,7 @@ const db = mysql.createConnection({         //on cree une connexion a la base de
 
 db.connect((err) => {                       //ici on se connect et si on y arrive pas, on envoie un message d'erreur
   if (err) {
-    console.error("❌ Erreur de connexion MySQL :", err); // pour afficher l'erreur dans une console
+    console.error(" Erreur de connexion MySQL :", err); // pour afficher l'erreur dans une console
     return;
   }
   console.log("✅ Connecté à MySQL"); //si la connexion est reussie, on avoir le message dans la console

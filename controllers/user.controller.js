@@ -15,7 +15,7 @@ export const getAllUsers = (req, res) => {
   `;
   db.query(sql, (err, results) => {
     if (err) {
-      console.error("❌ Erreur lors de la récupération des utilisateurs :", err);
+      console.error(" Erreur lors de la récupération des utilisateurs :", err);
       return res.status(500).json({ error: "Erreur serveur" });
     }
     res.json(results);
@@ -32,7 +32,7 @@ export const getUserById = (req, res) => {
   `;
   db.query(sql, [id], (err, results) => {
     if (err) {
-      console.error("❌ Erreur lors de la récupération :", err);
+      console.error(" Erreur lors de la récupération :", err);
       return res.status(500).json({ error: "Erreur serveur" });
     }
     if (results.length === 0) {
@@ -57,7 +57,7 @@ export const createUser = async (req, res) => {
     `;
     db.query(sql, [name, email, password_hash, role], (err, result) => {
       if (err) {
-        console.error("❌ Erreur lors de l’insertion :", err);
+        console.error(" Erreur lors de l’insertion :", err);
         return res.status(500).json({ error: "Erreur serveur" });
       }
       res.status(201).json({
@@ -67,7 +67,7 @@ export const createUser = async (req, res) => {
       });
     });
   } catch (err) {
-    console.error("❌ Erreur bcrypt :", err);
+    console.error(" Erreur bcrypt :", err);
     res.status(500).json({ error: "Erreur serveur" });
   }
 };
@@ -90,7 +90,7 @@ export const updateUser = async (req, res) => {
     `;
     db.query(sql, [name, email, password_hash, role, id], (err, result) => {
       if (err) {
-        console.error("❌ Erreur lors de la mise à jour :", err);
+        console.error(" Erreur lors de la mise à jour :", err);
         return res.status(500).json({ error: "Erreur serveur" });
       }
       if (result.affectedRows === 0) {
@@ -102,7 +102,7 @@ export const updateUser = async (req, res) => {
       });
     });
   } catch (err) {
-    console.error("❌ Erreur bcrypt :", err);
+    console.error(" Erreur bcrypt :", err);
     res.status(500).json({ error: "Erreur serveur" });
   }
 };
@@ -113,7 +113,7 @@ export const deleteUser = (req, res) => {
   const sql = `DELETE FROM users WHERE id = ?`;
   db.query(sql, [id], (err, result) => {
     if (err) {
-      console.error("❌ Erreur lors de la suppression :", err);
+      console.error(" Erreur lors de la suppression :", err);
       return res.status(500).json({ error: "Erreur serveur" });
     }
     if (result.affectedRows === 0) {
@@ -131,7 +131,7 @@ export const loginUser = (req, res) => {
   const sql = "SELECT * FROM users WHERE email = ?";
   db.query(sql, [email], async (err, results) => {
     if (err) {
-      console.error("❌ Erreur lors du login :", err);
+      console.error(" Erreur lors du login :", err);
       return res.status(500).json({ error: "Erreur serveur" });
     }
     if (results.length === 0) {
